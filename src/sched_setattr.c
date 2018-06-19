@@ -1,16 +1,17 @@
 #undef NDEBUG
 #include <assert.h>
-#include <error.h>
 #include <errno.h>
-#include <stdio.h>
-#include <stdlib.h>
+#include <error.h>
 #include <pthread.h>
 #include <sched.h>
+#include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
-#include <sys/time.h>
 #include <sys/resource.h>
+#include <sys/time.h>
 
 #include "sched_setattr_interface.h"
+#include "utility.h"
 
 
 /*
@@ -27,17 +28,6 @@
 #define TODO 1
 
 #define PARAM_LOOP_SIZE 100000
-
-#define log_to(where, msg, args...)			\
-	do {									\
-	fprintf(where, msg "\n", ##args);		\
-	} while (0)
-
-#define log_critical(msg, args...)					\
-	do {									\
-	log_to(stderr, "[CRIT-ERR] %s:%d: " msg, __FUNCTION__, __LINE__, ##args);	\
-	exit(-1); \
-	} while (0)
 
 static inline void
 check_common_sched_attr(const struct sched_attr *a,

@@ -31,3 +31,5 @@ target_link_libraries(sched_setattr_perf
 )
 
 create_test(sched_setattr sched_setattr.c)
+create_test(sched_getattr_abs sched_getattr_abs.c)
+#create_test(sched_getattr_perf sched_getattr_perf.c)
